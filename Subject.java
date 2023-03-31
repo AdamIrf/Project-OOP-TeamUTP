@@ -39,7 +39,7 @@ public class Subject extends Lecturer{
         return description;
     }
     /*
-    public ArrayList<Name> getLecturer(){
+    public Name getLecturer(int index){
         return lecturer;
     }
      */
