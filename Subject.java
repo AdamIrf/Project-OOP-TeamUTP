@@ -5,8 +5,7 @@ public class Subject extends Lecturer{
     // ATTRIBUTES
     private String subjectName;
     private String description;
-    //ArrayList<Name> lecturer = new ArrayList<>();
-    private Lecturer lecturer;        // FOR UNIT TESTING ONLY
+    private Lecturer lecturer;
     private String venue;
     private int creditHr;
 
@@ -17,11 +16,6 @@ public class Subject extends Lecturer{
     public void setDescription(String description){
         this.description = description;
     }
-    /*
-    public void setLecturer(Name lecturer){ // FOR UNIT TESTING ONLY
-        this.lecturer.add(lecturer);
-    }
-     */
     public void setLecturer(Lecturer lecturer){       
         this.lecturer = lecturer;
     }
@@ -38,12 +32,7 @@ public class Subject extends Lecturer{
     public String getDescription(){
         return description;
     }
-    /*
-    public Name getLecturer(int index){
-        return lecturer;
-    }
-     */
-    public Lecturer getLecturer(){        // FOR UNIT TESTING ONLY
+    public Lecturer getLecturer(){
         return lecturer;
     }
     public String getVenue(){
