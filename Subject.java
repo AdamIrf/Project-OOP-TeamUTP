@@ -79,9 +79,9 @@ public class Subject extends Lecturer{
     public void displaySubject(){
         System.out.println("Subject Name: " + getSubjectName());
         System.out.println("Subject Description: " + getDescription());
-        System.out.println("Lecturer's information: \n");
+        System.out.println("\nLecturer's information: ");
         this.getLecturer().displayLecturer();
-        System.out.println("Venue: " + getVenue());
+        System.out.println("\nVenue: " + getVenue());
         System.out.println("Credit Hour: " + getCreditHr());
         System.out.println("\n");
     }
