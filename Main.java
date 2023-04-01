@@ -3,6 +3,9 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
+		
+		//Initialize class
+		
 		Scanner scanner = new Scanner(System.in);
 		
 		StudentInfo student = new StudentInfo();
@@ -67,7 +70,7 @@ public class Main {
 		
 		
 		
-		
+		//start of interface
 		
 				
 				System.out.println("First Name:");
@@ -86,7 +89,7 @@ public class Main {
 				
 				
 			
-			for(int i=0;i<4;) {	
+			for(int i=0;i<4;) {	//1st layer interface
 				System.out.println("Enter Options:");
 				System.out.println("1 - CGPA");
 				System.out.println("2 - Task");
@@ -95,10 +98,10 @@ public class Main {
 				int currtask=0;
 				i = scanner.nextInt();
 				
-				if(i==1) { 
+				if(i==1) { 		//for CGPA
 					boolean calcgPa=true;
 					int index =0;
-					while(calcgPa==true) {
+					while(calcgPa==true) {	
 					System.out.println("1 - Calculate GPA\n2 - Display GPA\n3 - Calculate CGPA \n4 - Return");
 					System.out.println("Enter Option: ");
 					int choiceGpa = scanner.nextInt();
@@ -125,7 +128,7 @@ public class Main {
 			        
 				   } 
 				}
-				else if(i==2) {
+				else if(i==2) {		//for the to do list function
 				for(int k=0;k<6;) {
 					
 					
@@ -138,52 +141,76 @@ public class Main {
 				
 				
 					 if(k==1) {
-					
-						 todoList.getTaskindi(currtask).createTask();
-						 currtask++;
 						 if(currtask>4) {
 							 System.out.println("\nList is full please complete and remove a task.");
 							 k=2;
 						 }
+						 else {
+							 if(TaskType.getType().size()==0) {
+								System.out.println("No task type has been created. Go to Edit Task.");
+								
+							 }
+							 else {
+								 todoList.getTaskindi(currtask).createTask();
+								 currtask++;
+							 }
 						 k=0;
-
+						}
 					 }
 					 else if(k==2) {
-						 for(int i1=0;i1<todoList.list.size();i1++) {
-							 System.out.println(i1 +" - "+ todoList.getTaskindi(i1).getDescription());
-						 }
-						 System.out.println("Enter number:");
-						 int removal = scanner.nextInt();
-						 todoList.removeTask(removal);
-					 }
-					 else if(k==3) {
-						 for(int i1=0;i1<todoList.list.size();i1++) {
-							 System.out.println(i1 +" - "+ todoList.getTaskindi(i1).getDescription());
-						 }
-						 System.out.println("Enter task number:");
-						 int taskNumber=scanner.nextInt();
-						 if(todoList.getTaskindi(taskNumber).getComplete()) {
-						System.out.println("The task has been completed.\n");
+						 if(currtask==0) {
+							 System.out.println("\nNo task created, returning...\n");
+							 k=0;
 						 }
 						 else {
-							 Reminder.checkTaskStatus(todoList.getTaskindi(taskNumber));
-							 System.out.println("\n");
+							 for(int i1=0;i1<currtask;i1++) {
+								 System.out.println(i1 +" - "+ todoList.getTaskindi(i1).getDescription());
+							 }
+							 System.out.println("Enter number:");
+							 int removal = scanner.nextInt();
+							 todoList.removeTask(removal);
+							 currtask--;
+						 }
+					 }
+					 else if(k==3) {
+						 if(currtask==0) {
+							 System.out.println("\nNo task created, returning...\n");
+							 k=0;
+						 }
+						 else {
+							 for(int i1=0;i1<currtask;i1++) {
+								 System.out.println(i1 +" - "+ todoList.getTaskindi(i1).getDescription());
+							 }
+							 System.out.println("Enter task number:");
+							 int taskNumber=scanner.nextInt();
+							 if(todoList.getTaskindi(taskNumber).getComplete()) {
+								 System.out.println("The task has been completed.\n");
+							 }
+							 else {
+								 Reminder.checkTaskStatus(todoList.getTaskindi(taskNumber));
+								 System.out.println("\n");
+							 }
 						 }
 					 }
 					 else if(k==4) {
-					
-						 for(int i1=0;i1<TaskType.getType().size();i1++) {
-							 System.out.println("No. "+i1+" - "+TaskType.getTypeindi(i1));
+						 if(currtask==0) {
+							 System.out.println("\nNo task created, returning...\n");
+							 k=0;
 						 }
-						System.out.println("Enter choice of task type:");
-							int choice = scanner.nextInt();
-							for(int o=0;o<currtask;o++) {
-								if(TaskType.getTypeindi(choice).equals(todoList.list.get(o).gettaskType())) {
-									todoList.list.get(o).displayTask();
-									System.out.println("\n");
+						 else {
+							 for(int i1=0;i1<TaskType.getType().size();i1++) {
+								 System.out.println("No. "+i1+" - "+TaskType.getTypeindi(i1));
+							 }
+							 System.out.println("Enter choice of task type:");
+							 	int choice = scanner.nextInt();
+							 	for(int o=0;o<currtask;o++) {
+							 		if(TaskType.getTypeindi(choice).equals(todoList.list.get(o).gettaskType())) {
+							 			todoList.list.get(o).displayTask();
+							 			System.out.println("\n");
 			    			
-								}
-							}
+							 		}
+							 	}
+						 } 	
 					 }
 					 else if(k==5) {
 						 scanner.nextLine();
@@ -217,13 +244,13 @@ public class Main {
 								wednesday.createSchedule(subject1w, lec1w);
 							}
 							else if(dayOfweek==4) {
-								thursday.createSchedule(subject1th, subject1th);
+								thursday.createSchedule(subject1th, lec1th);
 							}
 							else if(dayOfweek==5) {
 								friday.createSchedule(subject1f, lec1f);
 							}
 							else if(dayOfweek==6) {
-								saturday.createSchedule(subject1st, subject1st);
+								saturday.createSchedule(subject1st, lec1st);
 							}
 							else if(dayOfweek==7) {
 								sunday.createSchedule(subject1S, lec1S);
@@ -237,25 +264,95 @@ public class Main {
 							System.out.println("1 - Monday\n2 - Tuesday\n3 - Wednesday\n4 - Thursday\n5 - Friday\n6 - Saturday\n7 - Sunday");
 							int delete = scanner.nextInt();
 							if(delete==1) {
-								monday.getSubject().remove(0);
+								if(monday.getSubject().size()==0) {
+									System.out.println("No class to be deleted.");
+								}
+								else {
+									for(int sub=0;sub<monday.getSubject().size();sub++) {
+										System.out.println(sub+" - "+monday.getSubjectindi(sub).getSubjectName());
+									}
+								System.out.println("Enter Subject Index: ");
+								int subjectint=scanner.nextInt();
+								monday.getSubject().remove(subjectint);
+								}
 							}
 							else if(delete==2) {
-								tuesday.getSubject().remove(0);
+								if(tuesday.getSubject().size()==0) {
+									System.out.println("No class to be deleted.");
+								}
+								else {
+									for(int sub=0;sub<tuesday.getSubject().size();sub++) {
+										System.out.println(sub+" - "+tuesday.getSubjectindi(sub).getSubjectName());
+									}
+								System.out.println("Enter Subject Index: ");
+								int subjectint=scanner.nextInt();
+								tuesday.getSubject().remove(subjectint);
+								}
 							}
 							else if(delete==3){
-								wednesday.getSubject().remove(0);
+								if(wednesday.getSubject().size()==0) {
+									System.out.println("No class to be deleted.");
+								}
+								else {
+									for(int sub=0;sub<wednesday.getSubject().size();sub++) {
+										System.out.println(sub+" - "+wednesday.getSubjectindi(sub).getSubjectName());
+									}
+								System.out.println("Enter Subject Index: ");
+								int subjectint=scanner.nextInt();
+								wednesday.getSubject().remove(subjectint);
+								}
 							}
 							else if(delete==4) {
-								thursday.getSubject().remove(0);
+								if(thursday.getSubject().size()==0) {
+									System.out.println("No class to be deleted.");
+								}
+								else {
+									for(int sub=0;sub<thursday.getSubject().size();sub++) {
+										System.out.println(sub+" - "+thursday.getSubjectindi(sub).getSubjectName());
+									}
+								System.out.println("Enter Subject Index: ");
+								int subjectint=scanner.nextInt();
+								thursday.getSubject().remove(subjectint);
+								}
 							}
 							else if(delete==5) {
-								friday.getSubject().remove(0);
+								if(friday.getSubject().size()==0) {
+									System.out.println("No class to be deleted.");
+								}
+								else{
+									for(int sub=0;sub<friday.getSubject().size();sub++) {
+										System.out.println(sub+" - "+friday.getSubjectindi(sub).getSubjectName());
+									}
+								System.out.println("Enter Subject Index: ");
+								int subjectint=scanner.nextInt();
+								friday.getSubject().remove(subjectint);
+								}
 							}
 							else if(delete==6) {
-								saturday.getSubject().remove(0);
+								if(saturday.getSubject().size()==0) {
+									System.out.println("No class to be deleted.");
+								}
+								else{
+									for(int sub=0;sub<saturday.getSubject().size();sub++) {
+										System.out.println(sub+" - "+saturday.getSubjectindi(sub).getSubjectName());
+									}
+								System.out.println("Enter Subject Index: ");
+								int subjectint=scanner.nextInt();
+								saturday.getSubject().remove(subjectint);
+								}
 							}
 							else if(delete==7) {
-								sunday.getSubject().remove(0);
+								if(sunday.getSubject().size()==0) {
+									System.out.println("No class to be deleted.");
+								}
+								else {
+									for(int sub=0;sub<sunday.getSubject().size();sub++) {
+										System.out.println(sub+" - "+sunday.getSubjectindi(sub).getSubjectName());
+									}
+								System.out.println("Enter Subject Index: ");
+								int subjectint=scanner.nextInt();
+								sunday.getSubject().remove(subjectint);
+								}
 							}
 							else {
 								System.out.println("Invalide input, returning...");
@@ -266,25 +363,74 @@ public class Main {
 							System.out.println("1 - Monday\n2 - Tuesday\n3 - Wednesday\n4 - Thursday\n5 - Friday\n6 - Saturday\n7 - Sunday");
 							int displayday = scanner.nextInt();
 							if(displayday==1) {
-								monday.displaySchedule(subject1m, 0);
+								if(monday.getSubject().size()==0) {
+									System.out.println("No class.");
+								}
+								else {
+									for(int p=0;p<monday.getSubject().size();p++) {
+										monday.displaySchedule(monday.getSubjectindi(p), p);
+									}
+								}
 							}
 							else if(displayday==2) {
-								tuesday.displaySchedule(subject1t, 0);
+								if(tuesday.getSubject().size()==0) {
+									System.out.println("No class.");
+								}
+								else {
+									for(int p=0;p<tuesday.getSubject().size();p++) {
+										tuesday.displaySchedule(tuesday.getSubjectindi(p), p);
+									}
+								}
 							}
 							else if(displayday==3){
-								wednesday.displaySchedule(subject1w, 0);
+								if(wednesday.getSubject().size()==0) {
+									System.out.println("No class.");
+								}
+								else {
+									for(int p=0;p<wednesday.getSubject().size();p++) {
+										wednesday.displaySchedule(wednesday.getSubjectindi(p), p);
+									}
+								}
 							}
 							else if(displayday==4) {
-								thursday.displaySchedule(subject1th, 0);
+								if(thursday.getSubject().size()==0) {
+									System.out.println("No class.");
+								}
+								else {
+									for(int p=0;p<thursday.getSubject().size();p++) {
+										thursday.displaySchedule(thursday.getSubjectindi(p), p);
+									}
+								}
 							}
 							else if(displayday==5) {
-								friday.displaySchedule(subject1f, 0);
+								if(friday.getSubject().size()==0) {
+									System.out.println("No class.");
+								}
+								else {
+									for(int p=0;p<friday.getSubject().size();p++) {
+										friday.displaySchedule(friday.getSubjectindi(p), p);
+									}
+								}
 							}
 							else if(displayday==6) {
-								saturday.displaySchedule(subject1st, 0);
+								if(saturday.getSubject().size()==0) {
+									System.out.println("No class.");
+								}
+								else {
+									for(int p=0;p<saturday.getSubject().size();p++) {
+										saturday.displaySchedule(saturday.getSubjectindi(p), p);
+									}
+								}
 							}
 							else if(displayday==7) {
-								sunday.displaySchedule(subject1S, 0);
+								if(sunday.getSubject().size()==0) {
+									System.out.println("No class.");
+								}
+								else {
+									for(int p=0;p<sunday.getSubject().size();p++) {
+										sunday.displaySchedule(sunday.getSubjectindi(p), p);
+									}	
+								}
 							}
 							else {
 								System.out.println("Invalide input, returning...");
