@@ -66,24 +66,5 @@ public class TaskType {
             }
            
         }
-    }
-    public void main (String[] args) {
-    	Scanner scanner = new Scanner(System.in);
-    	to_do_list todoList = new to_do_list();
-    	for(int i1=0;i1<todoList.type.size();i1++) {
-			System.out.println("No. "+i1);
-			todoList.getType(i1);
-		}
-    	System.out.println("Enter choice of task type:");
-    	int choice = scanner.nextInt();
-    	for(int o=0;o<todoList.list.size();o++) {
-    		if(todoList.type.get(choice).equals(todoList.list.get(o).gettaskType())) {
-    			todoList.list.get(o);
-    			
-    		}
-    	}
-    	
-    }
-     
-    
-}
+    }}
+   

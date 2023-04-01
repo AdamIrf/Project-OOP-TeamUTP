@@ -4,11 +4,12 @@ import java.util.Scanner;
 public class to_do_list {
     ArrayList<Task> list = new ArrayList<Task>();
 
-    public Task getTask(int i){
-        return this.list.get(i);
+    public ArrayList<Task> getTask(){
+    	return this.list;
     }
-    public int getIndex(Task task){
-        return this.list.indexOf(task);
+    
+    public Task getTaskindi(int i){
+        return this.list.get(i);
     }
     public void addTask(Task task){
         this.list.add(task);
@@ -19,7 +20,7 @@ public class to_do_list {
     public void editTask(Task task,int i){
         this.list.set(i,task);
     }
-public static void main(String[] args) {
+/*public static void main(String[] args) {
 	
 	Task task = new Task();
 	to_do_list todoList = new to_do_list();
@@ -82,4 +83,4 @@ public static void main(String[] args) {
 	}
     
    }
-}}
+}*/}

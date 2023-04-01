@@ -54,7 +54,7 @@ public class CGPA {
             fullCreditHour += creditHour;
         }
         gpa = totalPoint / fullCreditHour;
-        scanner.close();
+        
         return gpa;
     }
     public void add(double gpa, int i) {

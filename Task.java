@@ -1,7 +1,7 @@
 import java.time.LocalDate;
 import java.util.Scanner;
 
-public class Task extends TaskType{
+public class Task {
     
 
 	private String description;
@@ -43,12 +43,12 @@ public class Task extends TaskType{
 
         // Prompt the user for the values of the attributes
         System.out.println("Task types:");
-        for (int i = 0; i < this.type.size(); i++) {
-            System.out.println(i + ": " + this.type.get(i));
+        for (int i = 0; i < TaskType.getType().size(); i++) {
+            System.out.println(i + ": " + TaskType.getTypeindi(i));
         }
         System.out.println("Enter task type: ");
         int IntuserInput = scanner.nextInt();
-        this.settaskType(this.getType(IntuserInput));
+        this.settaskType(TaskType.getTypeindi(IntuserInput));
  
         scanner.nextLine();
         
@@ -83,7 +83,7 @@ public class Task extends TaskType{
         }
     
     public void displayTask() {
-    	System.out.println("Task type: "+this.type);
+    	System.out.println("Task type: "+this.gettaskType());
     	System.out.println("Task description: "+this.getDescription());
     	System.out.println("Due date: "+this.getDueDate());
     	if(this.complete==true) {
@@ -96,7 +96,8 @@ public class Task extends TaskType{
     
     public static void main(String[] args) {
     	Task test = new Task();
-    	test.addType("testing");
+    	TaskType type = new TaskType();
+    	type.addType("testing");
     	test.createTask();
     	test.displayTask();
     	

@@ -1,43 +1,50 @@
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class SetSchedule {
     // ATTRIBUTES
-    private ArrayList<String> daysOfWeek = new ArrayList<String>();
+	private String day = new String();
     private ArrayList<LocalTime> startTime = new ArrayList<LocalTime>();
     private ArrayList<LocalTime> endTime = new ArrayList<LocalTime>();
     private ArrayList<Subject> subjectName = new ArrayList<Subject>();
+    
 
     // METHODS
-    public void addDaysOfWeek(String day) {
-        this.daysOfWeek.add(day);
-    }
 
-    public void setStartTime(LocalTime startTime) {
+    public void addStartTime(LocalTime startTime) {
         this.startTime.add(startTime);
     }
 
-    public void setEndTime(LocalTime endTime) {
+    public void addEndTime(LocalTime endTime) {
         this.endTime.add(endTime);
     }
-
-    public String getDaysOfWeek(int i) {
-        return this.daysOfWeek.get(i);
+    
+    public void setday(String day) {
+    	this.day=day;
     }
 
-    public int getindexDay(String day) {
-        return this.daysOfWeek.indexOf(day);
-    }
+	public String getDay() {
+		return day;
+	}
 
-    public LocalTime getStartTime(int i) {
+	public LocalTime getStartTime(int i) {
         return this.startTime.get(i);
     }
 
     public LocalTime getEndTime(int i) {
         return this.endTime.get(i);
     }
+    
+    public ArrayList<Subject> getSubject(){
+    	return subjectName;
+    }
+    
+    public Subject getSubjectindi(int i) {
+    	return this.subjectName.get(i);
+    }
 
-    public void addSubject(Subject subjectName) {
+	public void addSubject(Subject subjectName) {
         this.subjectName.add(subjectName);
     }
 
@@ -48,37 +55,44 @@ public class SetSchedule {
     public int getindexsubject(Subject subjectname) {
         return this.subjectName.indexOf(subjectname);
     }
-
-    // UNIT TESTING
-    public static void main(String[] args) {
-        SetSchedule schedule1 = new SetSchedule();
-
-        Subject subject1 = new Subject();
-        Subject subject2 = new Subject();
+    
+    public void createSchedule(Subject subject,Lecturer lecturer) { //add subject into a day schedule
+    	Scanner scanner = new Scanner(System.in);
+    	String input = new String();
+    	
+    	System.out.println("Enter Subject: ");
+    	subject.createSubject(lecturer);
+    	this.addSubject(subject);
+    	
+    	scanner.nextLine();
+    	System.out.println("Enter Start time (hh:mm:ss): ");
+        input = scanner.nextLine();
+        LocalTime startTime = LocalTime.parse(input);
+        this.addStartTime(startTime);
         
-        // SETTING THE DAYS, START TIME & END TIME OF SUBJECT #1'S CLASS SESSIONS
-        schedule1.addDaysOfWeek("Tuesday");
-        schedule1.setStartTime(LocalTime.of(14, 0));
-        schedule1.setEndTime(LocalTime.of(16,0));
-        schedule1.addDaysOfWeek("Friday");
-        schedule1.setStartTime(LocalTime.of(8,0));
-        schedule1.setEndTime(LocalTime.of(10,0));
-
-        // ADDING SUBJECTS INTO THE SCHEDULE
-        schedule1.addSubject(subject1);
-        schedule1.addSubject(subject2);
-
-        // REMOVING THE SUBJECT THAT IS NO LONGER TAKEN BY USER
-        schedule1.removeSubject(schedule1.getindexsubject(subject2));
-
-        // DISPLAYING SCHEDULE DETAILS
-        System.out.println("Your schedule for Subject: Object Oriented Programming");
-        for (int i=0; i<schedule1.daysOfWeek.size(); i++) {
-            System.out.println("Day: " + schedule1.daysOfWeek.get(i));
-            System.out.println("Start Time: " + schedule1.startTime.get(i));
-            System.out.println("End Time: " + schedule1.endTime.get(i));
-            System.out.println();
+        System.out.println("Enter End time (hh:mm:ss): ");
+        input = scanner.nextLine();
+        LocalTime endTime = LocalTime.parse(input);
+        this.addEndTime(endTime);
         }
-        }
+    
+    public void displaySchedule(Subject subject,int i) { // only display individual subject
+    	System.out.println("Subject Information: ");
+    	subject.displaySubject();
+    	System.out.println("Start time: "+this.getStartTime(i));
+    	System.out.println("End time: "+this.getEndTime(i));
+    	
+    }
+    
+    public static void main(String[] args) {
+    	SetSchedule monday = new SetSchedule();
+    	Subject subject1 = new Subject();
+    	Lecturer lec1 = new Lecturer();
+    	monday.createSchedule(subject1, lec1);
+    	monday.displaySchedule(monday.getSubjectindi(0),0);
+    	
+    	
     }
 
+    
+   }

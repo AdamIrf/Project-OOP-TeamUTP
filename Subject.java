@@ -6,7 +6,7 @@ public class Subject extends Lecturer{
     private String subjectName;
     private String description;
     //ArrayList<Name> lecturer = new ArrayList<>();
-    private String lecturer;        // FOR UNIT TESTING ONLY
+    private Lecturer lecturer;        // FOR UNIT TESTING ONLY
     private String venue;
     private int creditHr;
 
@@ -18,11 +18,11 @@ public class Subject extends Lecturer{
         this.description = description;
     }
     /*
-    public void setLecturer(Name lecturer){
+    public void setLecturer(Name lecturer){ // FOR UNIT TESTING ONLY
         this.lecturer.add(lecturer);
     }
      */
-    public void setLecturer(String lecturer){       // FOR UNIT TESTING ONLY
+    public void setLecturer(Lecturer lecturer){       
         this.lecturer = lecturer;
     }
     public void setVenue(String venue){
@@ -43,7 +43,7 @@ public class Subject extends Lecturer{
         return lecturer;
     }
      */
-    public String getLecturer(){        // FOR UNIT TESTING ONLY
+    public Lecturer getLecturer(){        // FOR UNIT TESTING ONLY
         return lecturer;
     }
     public String getVenue(){
@@ -53,52 +53,41 @@ public class Subject extends Lecturer{
         return creditHr;
     }
 
-    /*      COMMENTING THIS METHOD TO ALLOW UNIT TESTING
+    
     //method createSubject
-    public void createSubject(){
+    public void createSubject(Lecturer lec){
         System.out.println("----------------Subject's Details----------------");
-
         Scanner scanner = new Scanner(System.in);
-        Lecturer lec = new Lecturer();
-
+        setLecturer(lec);
         System.out.print("Subject Name: ");
         String subjectName = scanner.nextLine();
         setSubjectName(subjectName);
-
         System.out.print("Subject Description: ");
         String description = scanner.nextLine();
         setDescription(description);
-
-
-        System.out.print("Name of Lecturer: ");
-        Name name = lec.getName();
-        setLecturer(name);
-
-
+        lec.createLecturer(); //create lecturer
         System.out.print("\nVenue: ");
         String venue = scanner.nextLine();
         setVenue(venue);
-
         System.out.print("Credit Hour: ");
         int creditHr = scanner.nextInt();
         setCreditHr(creditHr);
-
-        scanner.close();
-
         System.out.println("Subject's details created successfully.\n");
     }
-     */
+     
 
     public void displaySubject(){
         System.out.println("Subject Name: " + getSubjectName());
         System.out.println("Subject Description: " + getDescription());
-        System.out.println("Lecturer's Name: " + getLecturer());
+        System.out.println("Lecturer's information: \n");
+        this.getLecturer().displayLecturer();
         System.out.println("Venue: " + getVenue());
         System.out.println("Credit Hour: " + getCreditHr());
-        System.out.println();
+        System.out.println("\n");
     }
 
     // UNIT TESTING
+    /*
     public static void main(String[] args){
         // CREATING THE OBJECTS OF THE CLASS
         Subject subject1 = new Subject();
@@ -134,5 +123,5 @@ public class Subject extends Lecturer{
         subject1.displaySubject();
         subject2.displaySubject();
 
-    }
+    }*/
 }

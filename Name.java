@@ -49,11 +49,15 @@ public void createname() {
 }
 
 public void displayName() {
-	System.out.println("First name: "+this.getfName());
-	System.out.println("Middle name: "+this.getmName());
-	System.out.println("Last name: "+this.getlName());
+	System.out.println("Mame: "+this.getfName()+" "+this.mName+" "+this.lName);
 }
 
+public static void main(String[] args) {
+	Name test = new Name();
+	test.createname();
+	test.displayName();
+	
+}
 
  
 

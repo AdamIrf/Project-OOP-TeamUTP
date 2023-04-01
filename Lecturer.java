@@ -1,18 +1,11 @@
 import java.util.Scanner;
 
-public class Lecturer{
-    private Name name;
+public class Lecturer extends Name{
     private String officeAddr;
     private String officeNum;
     private String phoneNum;
     private String email;
 
-    public void setName(Name name) {
-        this.name = name;
-    }
-    public Name getName(){
-        return name;
-    }
 
     public void setOfficeAddr(String officeAddr) {
         this.officeAddr = officeAddr;
@@ -35,10 +28,15 @@ public class Lecturer{
         Lecturer lec = new Lecturer();
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Name of lecturer: ");
-        Name name = lec.getName();
-        setName(name);
-
+        System.out.print("Name of lecturer (First / Middle / Last): ");
+        String first = scanner.next();
+        this.setfName(first);
+        String midd = scanner.next();
+        this.setmName(midd);
+        String last = scanner.next();
+        this.setlName(last);
+        
+        scanner.nextLine();
         System.out.print("\nOffice room: ");
         String officeAddr = scanner.nextLine();
         setOfficeAddr(officeAddr);
@@ -55,14 +53,13 @@ public class Lecturer{
         String email = scanner.nextLine();
         setEmail(email);
 
-        scanner.close();
 
         System.out.println("Lecturer's details created successfully.");
 
     }
 
     public void displayLecturer() {
-        System.out.println("Name: " + this.name);
+        System.out.println("Name: " + this.getfName()+" "+this.getmName()+" "+this.getlName());
         System.out.println("Office room: " + this.officeAddr);
         System.out.println("office number: " + this.officeNum);
         System.out.println("Phone number: " + this.phoneNum);

@@ -21,5 +21,4 @@ public class ListOfCGPA {
         return Double.parseDouble(String.format("%.2f", cgpa));
     }
     
-]
-
+}
