@@ -65,12 +65,12 @@ public class SetSchedule {
     	this.addSubject(subject);
     	
     	scanner.nextLine();
-    	System.out.println("Enter Start time (hh:mm:ss): ");
+    	System.out.print("Enter Start time (hh:mm:ss): ");
         input = scanner.nextLine();
         LocalTime startTime = LocalTime.parse(input);
         this.addStartTime(startTime);
         
-        System.out.println("Enter End time (hh:mm:ss): ");
+        System.out.print("Enter End time (hh:mm:ss): ");
         input = scanner.nextLine();
         LocalTime endTime = LocalTime.parse(input);
         this.addEndTime(endTime);
