@@ -84,6 +84,7 @@ public class SetSchedule {
     	
     }
     
+	// UNIT TESTING
     public static void main(String[] args) {
     	SetSchedule monday = new SetSchedule();
     	Subject subject1 = new Subject();
